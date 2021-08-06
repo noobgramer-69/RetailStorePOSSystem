@@ -1,11 +1,10 @@
-package com.retailstore.model;
+package com.assignment.model;
 
 public class Product {
 	 
 	private String productID;
 	private String productName;
-	private String productType;
-        private Double productPrice;
+	private Double productPrice;
 	private boolean fragile;
 
 	public String getProductID() {
@@ -32,20 +31,6 @@ public class Product {
 	public void setFragile(boolean fragile) {
 		this.fragile = fragile;
 	}
-
-    /**
-     * @return the productType
-     */
-    public String getProductType() {
-        return productType;
-    }
-
-    /**
-     * @param productType the productType to set
-     */
-    public void setProductType(String productType) {
-        this.productType = productType;
-    }
 	
 	 
 		
