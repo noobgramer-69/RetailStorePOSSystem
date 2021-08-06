@@ -5,7 +5,6 @@
  */
 package com.retailstore.controller;
 
-import com.retailstore.model.Customer;
 import com.retailstore.model.Product;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
