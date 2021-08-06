@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.assignment.controller;
+package com.retailstore.controller;
 
-import com.assignment.model.Customer;
+import com.retailstore.model.Customer;
 
 /**
  *

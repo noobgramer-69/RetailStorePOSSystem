@@ -1,4 +1,4 @@
-package com.assignment.model;
+package com.retailstore.model;
 
 public class Customer {
 
