@@ -9,6 +9,6 @@ package com.retailstore.model;
  *
  * @author tsj09
  */
-public class NonFragile {
+public class NonFragile extends Product {
     
 }

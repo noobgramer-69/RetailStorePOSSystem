@@ -6,6 +6,7 @@ public class Product {
 	private String productName;
 	private String productType;
         private Double productPrice;
+        private int quantity;
 	private boolean fragile;
 
 	public String getProductID() {
@@ -26,6 +27,14 @@ public class Product {
 	public void setProductPrice(Double productPrice) {
 		this.productPrice = productPrice;
 	}
+        
+        public int getquantity() {
+		return quantity;
+	}
+	public void setquantity(int quantity) {
+		this.quantity = quantity;
+        }
+        
 	public boolean isFragile() {
 		return fragile; 
 	}

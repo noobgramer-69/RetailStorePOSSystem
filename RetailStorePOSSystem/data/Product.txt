@@ -1,2 +1,16 @@
 P300,Monitor,Computer,1000.0,true
 P400,Monitor,Computer,1000.0,true
+P500,Monitor,Computer,1000.0,true
+P501,Monitor,Computer,1000.0,true
+P502,Monitor,Computer,1000.0,true
+P503,Monitor,Computer,1000.0,true
+P001,Asus,Laptop,2400.0,true
+P002,Lenovo,Laptop,3000.0,false
+P004,Asus,Laptop,3423.0,true
+P005,Asus,Laptop,3423.0,true
+P006,Mac,Laptop,122.0,true
+,321,Laptop,122.0,true
+P1234,dsada,Display,343.0,true
+P1234213,Asus,Laptop,12.0,true
+P203,dsad,Accessories,889.0,true
+P00213,ASidas,Laptop,2.0,true

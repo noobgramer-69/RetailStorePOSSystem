@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -60,9 +64,17 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jScrollPane1" min="-2" pref="808" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="jButton10" min="-2" pref="99" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                                  <Component id="jButton11" min="-2" pref="99" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="addProductBtn" min="-2" pref="99" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                                          <Component id="jButton11" min="-2" pref="99" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                                          <Component id="txtproductID" min="-2" pref="137" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                                   <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
@@ -83,9 +95,9 @@
                                               <Component id="cboproductType" min="-2" max="-2" attributes="0"/>
                                               <Component id="txtprice" min="-2" pref="137" max="-2" attributes="0"/>
                                               <Group type="102" attributes="0">
-                                                  <Component id="radyes" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="radFragile" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                                  <Component id="radNo" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="radNonFragile" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -108,7 +120,6 @@
                           </Group>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtproductID" min="-2" pref="137" max="-2" attributes="0"/>
                               <Component id="txtproductName" min="-2" pref="137" max="-2" attributes="0"/>
                               <Component id="txtquantity" min="-2" pref="137" max="-2" attributes="0"/>
                           </Group>
@@ -156,15 +167,15 @@
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtquantity" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="radyes" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="radNo" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="radFragile" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="radNonFragile" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButton11" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                               <Component id="jButton3" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                               <Component id="jButton12" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="jButton10" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                              <Component id="addProductBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                               <Component id="jButton13" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
@@ -259,12 +270,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton10">
+        <Component class="javax.swing.JButton" name="addProductBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addProductBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton11">
@@ -407,17 +418,19 @@
             <Property name="text" type="java.lang.String" value="Fragile"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="radyes">
+        <Component class="javax.swing.JRadioButton" name="radFragile">
           <Properties>
             <Property name="text" type="java.lang.String" value="Yes"/>
+            <Property name="name" type="java.lang.String" value="Fragile" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="radNo">
+        <Component class="javax.swing.JRadioButton" name="radNonFragile">
           <Properties>
             <Property name="text" type="java.lang.String" value="No"/>
+            <Property name="name" type="java.lang.String" value="Fragile" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radNoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radNonFragileActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

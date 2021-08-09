@@ -61,7 +61,7 @@ public class ProductControllerTestCase {
         
         Product p = new Product();
         
-        p.setProductID("P400");
+        p.setProductID("P503");
         p.setProductName("Monitor");
         p.setProductPrice(1000.0);
         p.setProductType("Computer");
@@ -70,7 +70,7 @@ public class ProductControllerTestCase {
         ProductController controller = new ProductController();
         String status =controller.addProduct(p);
         
-        assertEquals(status, "SUCCESS");
+        assertEquals("SUCCESS",status);
         
     }
 }

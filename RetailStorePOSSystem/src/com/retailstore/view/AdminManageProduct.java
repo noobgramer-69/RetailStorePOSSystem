@@ -5,6 +5,12 @@
  */
 package com.retailstore.view;
 
+import com.retailstore.controller.ProductController;
+import com.retailstore.controller.util.ShowMessage;
+import com.retailstore.controller.util.Validation;
+import com.retailstore.model.Product;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tsj09
@@ -16,6 +22,9 @@ public class AdminManageProduct extends javax.swing.JFrame {
      */
     public AdminManageProduct() {
         initComponents();
+        buttonGroup1.add(radFragile);
+        buttonGroup1.add(radNonFragile);
+
     }
 
     /**
@@ -27,6 +36,7 @@ public class AdminManageProduct extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -38,7 +48,7 @@ public class AdminManageProduct extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        addProductBtn = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -55,8 +65,8 @@ public class AdminManageProduct extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtprice = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        radyes = new javax.swing.JRadioButton();
-        radNo = new javax.swing.JRadioButton();
+        radFragile = new javax.swing.JRadioButton();
+        radNonFragile = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,10 +112,10 @@ public class AdminManageProduct extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setText("Add");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        addProductBtn.setText("Add");
+        addProductBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                addProductBtnActionPerformed(evt);
             }
         });
 
@@ -170,12 +180,14 @@ public class AdminManageProduct extends javax.swing.JFrame {
 
         jLabel8.setText("Fragile");
 
-        radyes.setText("Yes");
+        radFragile.setText("Yes");
+        radFragile.setName("Fragile"); // NOI18N
 
-        radNo.setText("No");
-        radNo.addActionListener(new java.awt.event.ActionListener() {
+        radNonFragile.setText("No");
+        radNonFragile.setName("Fragile"); // NOI18N
+        radNonFragile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radNoActionPerformed(evt);
+                radNonFragileActionPerformed(evt);
             }
         });
 
@@ -202,9 +214,14 @@ public class AdminManageProduct extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(76, 76, 76)
-                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(addProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(76, 76, 76)
+                                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(117, 117, 117)
+                                        .addComponent(txtproductID, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(86, 86, 86)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -223,9 +240,9 @@ public class AdminManageProduct extends javax.swing.JFrame {
                                             .addComponent(cboproductType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(radyes)
+                                                .addComponent(radFragile)
                                                 .addGap(26, 26, 26)
-                                                .addComponent(radNo))))))))
+                                                .addComponent(radNonFragile))))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(283, 283, 283)
@@ -239,7 +256,6 @@ public class AdminManageProduct extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtproductID, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtproductName, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(63, Short.MAX_VALUE))
@@ -277,14 +293,14 @@ public class AdminManageProduct extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(txtquantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
-                            .addComponent(radyes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(radNo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(radFragile, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(radNonFragile, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,9 +332,9 @@ public class AdminManageProduct extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void radNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radNoActionPerformed
+    private void radNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radNonFragileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_radNoActionPerformed
+    }//GEN-LAST:event_radNonFragileActionPerformed
 
     private void cboproductTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboproductTypeActionPerformed
         // TODO add your handling code here:
@@ -336,9 +352,91 @@ public class AdminManageProduct extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void addProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductBtnActionPerformed
+
+        System.out.println("Button Clicked");
+
+        String productId = txtproductID.getText();
+
+        if (productId != null && productId.length() > 0) {
+
+            String productName = txtproductName.getText();
+
+            if (productName != null && productName.length() > 0) {
+
+                String quantity = txtquantity.getText();
+
+                if (quantity != null && quantity.length() > 0) {
+
+                    if (Validation.isIntegerNumber(quantity)) {
+
+                        String price = txtprice.getText();
+
+                        if (price != null && price.length() > 0) {
+
+                            if (Validation.isFloatingNumber(price)) {
+
+                                String type = (String) cboproductType.getSelectedItem();
+                                Boolean fragile = radFragile.isSelected();
+                                Boolean nonFragile = radNonFragile.isSelected();
+
+                                Product p = new Product();
+
+                                p.setProductID(productId);
+                                p.setProductPrice(Double.parseDouble(price));
+
+                                if (fragile) {
+                                    p.setFragile(true);
+                                } else {
+                                    p.setFragile(false);
+                                }
+
+                                p.setProductName(productName);
+                                p.setquantity(Integer.parseInt(quantity));
+                                p.setProductType(type);
+
+                                ProductController controller = new ProductController();
+                                String status = controller.addProduct(p);
+                              
+
+                                if (status.equals("SUCCESS")) {
+                                    ShowMessage.showInfoMessage(this, productId + " Added succesfully");
+                                } else if (status.equals("PRODUCT_EXIST")) {
+
+                                    ShowMessage.showWarnMessage(this, productId + " Already Exist");
+                                } else {
+                                    ShowMessage.showErrorMessage(this, productId + " not added. Error !!!");
+                                }
+
+                            }
+
+                        } else {
+                            ShowMessage.showWarnMessage(this, "Please Enter Product Price");
+                            txtprice.requestFocus();
+                        }
+
+                    } else {
+                        ShowMessage.showWarnMessage(this, "Invalid Number format for Product Quantity. Enter Integer Number");
+                        txtquantity.requestFocus();
+                    }
+
+                } else {
+                    ShowMessage.showWarnMessage(this, "Please Enter Product Quantity");
+                    txtquantity.requestFocus();
+                }
+
+            } else {
+                ShowMessage.showWarnMessage(this, "Please Enter Product Name");
+                txtproductName.requestFocus();
+            }
+
+        } else {
+            ShowMessage.showWarnMessage(this, "Please Enter Product ID");
+            txtproductID.requestFocus();
+        }
+
+
+    }//GEN-LAST:event_addProductBtnActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
@@ -393,9 +491,10 @@ public class AdminManageProduct extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addProductBtn;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cboproductType;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
@@ -417,8 +516,8 @@ public class AdminManageProduct extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JRadioButton radNo;
-    private javax.swing.JRadioButton radyes;
+    private javax.swing.JRadioButton radFragile;
+    private javax.swing.JRadioButton radNonFragile;
     private javax.swing.JTextField txtprice;
     private javax.swing.JTextField txtproductID;
     private javax.swing.JTextField txtproductName;
