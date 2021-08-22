@@ -400,10 +400,12 @@ public class AdminManageProduct extends javax.swing.JFrame {
          System.out.println("Button Clicked");
          
          String productId = txtproductID.getText();
-         
          String productName = txtproductName.getText();
-         
          String quantity = txtquantity.getText();
+         if (productId != null && productId.length() > 0) {  
+            String productID = productController.deleteProduct(productId);
+         }
+         
          
          
          
@@ -504,7 +506,21 @@ public class AdminManageProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void editProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProductBtnActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Button Clicked");
+        
+        String productId = txtproductID.getText();
+        String productName = txtproductName.getText();
+        String quantity = txtquantity.getText();
+        String price = txtprice.getText();
+        
+        if (productId != null && productId.length() > 0){
+            
+            
+            
+            
+            
+        }
+        
     }//GEN-LAST:event_editProductBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

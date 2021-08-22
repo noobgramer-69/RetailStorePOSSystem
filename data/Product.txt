@@ -1,6 +1,3 @@
-P001,Asus,Laptop,2500.0,5,true
-P003,Apple,Laptop,10000.0,10,true
-P004,Dell,Laptop,6000.0,0,true
 P503,Monitor,Computer,1000.0,0,true
 
 P005,Mac,Laptop,2903.0,5,true

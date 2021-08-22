@@ -72,7 +72,7 @@ public class ProductController {
     
     public String updateProduct(Product product) {
 
-         String productId = product.getProductID();
+        String productId = product.getProductID();
 
         if (isProductExits(productId)) {
             
