@@ -1,4 +1,0 @@
-P001,Asus,Laptop,3020.0,5,true
-P002,Mac,Desktop,5000.0,10,true
-P003,Mac Pro,Desktop,5000.0,5,true
-P004,I-Mac,Desktop,5000.0,10,false
