@@ -3,24 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.retailstore.view;
+package retailstore.view;
 
-import com.retailstore.controller.ProductController;
-import com.retailstore.controller.util.ShowMessage;
-import com.retailstore.model.Product;
-import com.retailstore.controller.util.Validation;
+import retailstore.controller.ProductController;
+import retailstore.controller.util.ShowMessage;
+import retailstore.model.Product;
 
 /**
  *
  * @author tsj09
  */
-public class AddProductIF extends javax.swing.JInternalFrame {
+public class ViewProductIF extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form AddProductIF
      */
-    public AddProductIF() {
+     ProductController productController;
+   
+    public ViewProductIF() {
         initComponents();
+        
+        productController = new ProductController();
     }
 
     /**
@@ -32,8 +35,8 @@ public class AddProductIF extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        addProductBtn = new javax.swing.JButton();
         txtproductName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -47,25 +50,25 @@ public class AddProductIF extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         radFragile = new javax.swing.JRadioButton();
         radNonFragile = new javax.swing.JRadioButton();
+        viewProductBtn = new javax.swing.JButton();
 
-        setMaximizable(true);
-        setResizable(true);
-        setTitle("Add Product");
+        setTitle("View Product");
         setMinimumSize(new java.awt.Dimension(883, 515));
         setPreferredSize(new java.awt.Dimension(883, 515));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Add Product"));
 
-        addProductBtn.setText("Add");
-        addProductBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addProductBtnActionPerformed(evt);
-            }
-        });
+        txtproductName.setEditable(false);
 
         jLabel3.setText("Name");
 
         jLabel4.setText("Product ID");
+
+        txtproductID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtproductIDActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Quantity");
 
@@ -77,6 +80,8 @@ public class AddProductIF extends javax.swing.JInternalFrame {
                 cboproductTypeActionPerformed(evt);
             }
         });
+
+        txtquantity.setEditable(false);
 
         jLabel7.setText("Price");
 
@@ -93,6 +98,13 @@ public class AddProductIF extends javax.swing.JInternalFrame {
             }
         });
 
+        viewProductBtn.setText("View");
+        viewProductBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewProductBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -100,7 +112,7 @@ public class AddProductIF extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -160,9 +172,26 @@ public class AddProductIF extends javax.swing.JInternalFrame {
                             .addComponent(radFragile, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(radNonFragile, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(addProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(viewProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,104 +199,20 @@ public class AddProductIF extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void addProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductBtnActionPerformed
-
-        System.out.println("Button Clicked");
-
-        String productId = txtproductID.getText();
-
-        if (productId != null && productId.length() > 0) {
-
-            String productName = txtproductName.getText();
-
-            if (productName != null && productName.length() > 0) {
-
-                String quantity = txtquantity.getText();
-
-                if (quantity != null && quantity.length() > 0) {
-
-                    if (Validation.isIntegerNumber(quantity)) {
-
-                        String price = txtprice.getText();
-
-                        if (price != null && price.length() > 0) {
-
-                            if (Validation.isFloatingNumber(price)) {
-
-                                String type = (String) cboproductType.getSelectedItem();
-                                Boolean fragile = radFragile.isSelected();
-                                Boolean nonFragile = radNonFragile.isSelected();
-
-                                Product p = new Product();
-
-                                p.setProductID(productId);
-                                p.setProductPrice(Double.parseDouble(price));
-
-                                if (fragile) {
-                                    p.setFragile(true);
-                                } else {
-                                    p.setFragile(false);
-                                }
-
-                                p.setProductName(productName);
-                                p.setquantity(Integer.parseInt(quantity));
-                                p.setProductType(type);
-
-                                ProductController controller = new ProductController();
-                                String status = controller.addProduct(p);
-
-                                if (status.equals("SUCCESS")) {
-                                    ShowMessage.showInfoMessage(null, productId + " Added succesfully");
-                                } else if (status.equals("PRODUCT_EXIST")) {
-
-                                    ShowMessage.showWarnMessage(null, productId + " Already Exist");
-                                } else {
-                                    ShowMessage.showErrorMessage(null, productId + " not added. Error !!!");
-                                }
-
-                            }
-
-                        } else {
-                            ShowMessage.showWarnMessage(null, "Please Enter Product Price");
-                            txtprice.requestFocus();
-                        }
-
-                    } else {
-                        ShowMessage.showWarnMessage(null, "Invalid Number format for Product Quantity. Enter Integer Number");
-                        txtquantity.requestFocus();
-                    }
-
-                } else {
-                    ShowMessage.showWarnMessage(null, "Please Enter Product Quantity");
-                    txtquantity.requestFocus();
-                }
-
-            } else {
-                ShowMessage.showWarnMessage(null, "Please Enter Product Name");
-                txtproductName.requestFocus();
-            }
-
-        } else {
-            ShowMessage.showWarnMessage(null, "Please Enter Product ID");
-            txtproductID.requestFocus();
-        }
-
-    }//GEN-LAST:event_addProductBtnActionPerformed
 
     private void cboproductTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboproductTypeActionPerformed
         // TODO add your handling code here:
@@ -277,9 +222,18 @@ public class AddProductIF extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_radNonFragileActionPerformed
 
+    private void viewProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProductBtnActionPerformed
+        viewProduct();
+   
+    }//GEN-LAST:event_viewProductBtnActionPerformed
+
+    private void txtproductIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtproductIDActionPerformed
+       
+        viewProduct();
+    }//GEN-LAST:event_txtproductIDActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addProductBtn;
     private javax.swing.JComboBox<String> cboproductType;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -287,6 +241,7 @@ public class AddProductIF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton radFragile;
     private javax.swing.JRadioButton radNonFragile;
@@ -294,5 +249,48 @@ public class AddProductIF extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtproductID;
     private javax.swing.JTextField txtproductName;
     private javax.swing.JTextField txtquantity;
+    private javax.swing.JButton viewProductBtn;
     // End of variables declaration//GEN-END:variables
+
+
+    private void viewProduct(){
+        
+             String productId = txtproductID.getText();
+        if (productId != null && productId.length() > 0) {
+
+            Product product = productController.findProduct(productId);
+
+            if(product  != null){
+
+                txtproductName.setText(product.getProductName());
+                cboproductType.setSelectedItem(product.getProductType());
+                txtquantity.setText(Integer.toString(product.getquantity()));
+                txtprice.setText(Double.toString(product.getProductPrice()));
+                if (product.isFragile()){
+                    radFragile.setSelected(true);
+                }else if(!product.isFragile()){
+                    radNonFragile.setSelected(true);
+                }
+
+            }else{
+                ShowMessage.showWarnMessage(null, "Invalid Product ID");
+
+                txtproductID.setText("");
+                txtproductName.setText("");
+                txtquantity.setText("");
+                txtprice.setText("");
+                cboproductType.setSelectedItem(0);
+                radFragile.setSelected(false);
+                radNonFragile.setSelected(false);
+
+                txtproductID.requestFocus();
+            }
+
+        }
+        else {
+            ShowMessage.showWarnMessage(null, "Please Enter Product ID");
+            txtproductID.requestFocus();
+        }
+
+    }
 }

@@ -5,7 +5,8 @@
  */
 package com.retailstore.controller;
 
-import com.retailstore.model.Product;
+import retailstore.controller.ProductController;
+import retailstore.model.Product;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

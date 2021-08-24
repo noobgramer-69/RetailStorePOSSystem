@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.retailstore.view;
+package retailstore.view;
 
-import com.retailstore.controller.ProductController;
-import com.retailstore.controller.util.ShowMessage;
-import com.retailstore.controller.util.Validation;
-import com.retailstore.model.Product;
+import java.util.List;
+import java.util.Vector;
+import retailstore.controller.ProductController;
+import retailstore.controller.util.ShowMessage;
+import retailstore.controller.util.Validation;
+import retailstore.model.Product;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,15 +23,24 @@ public class AdminManageProduct extends javax.swing.JFrame {
     /**
      * Creates new form Customer_Product
      */
-    
-   ProductController productController;
-   
+    ProductController productController;
+
+    Vector productColumn;
+
     public AdminManageProduct() {
         initComponents();
         buttonGroup1.add(radFragile);
         buttonGroup1.add(radNonFragile);
-        
+
         productController = new ProductController();
+
+        productColumn = new Vector();
+
+        productColumn.add("Product ID");
+        productColumn.add("Product Name");
+        productColumn.add("Product Type");
+        productColumn.add("Quantity");
+        productColumn.add("Fragile");
 
     }
 
@@ -57,7 +69,7 @@ public class AdminManageProduct extends javax.swing.JFrame {
         deleteProductBtn = new javax.swing.JButton();
         searchProductBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        productTable = new javax.swing.JTable();
         viewProductBtn = new javax.swing.JButton();
         txtproductName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -72,6 +84,7 @@ public class AdminManageProduct extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         radFragile = new javax.swing.JRadioButton();
         radNonFragile = new javax.swing.JRadioButton();
+        searchProductTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,7 +151,7 @@ public class AdminManageProduct extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        productTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -150,14 +163,14 @@ public class AdminManageProduct extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(productTable);
 
         viewProductBtn.setText("View");
         viewProductBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -200,10 +213,6 @@ public class AdminManageProduct extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(416, 416, 416))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,39 +224,48 @@ public class AdminManageProduct extends javax.swing.JFrame {
                                 .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(68, 68, 68)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(addProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(76, 76, 76)
-                                        .addComponent(deleteProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(117, 117, 117)
-                                        .addComponent(txtproductID, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(86, 86, 86)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(editProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(viewProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(71, 71, 71)
-                                        .addComponent(searchProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(68, 68, 68)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel8))
-                                        .addGap(31, 31, 31)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cboproductType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(radFragile)
-                                                .addGap(26, 26, 26)
-                                                .addComponent(radNonFragile))))))))
+                                                .addComponent(addProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(76, 76, 76)
+                                                .addComponent(deleteProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(117, 117, 117)
+                                                .addComponent(txtproductID, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(searchProductTF, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(45, 45, 45)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(editProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(viewProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(170, 170, 170))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(jLabel6)
+                                                            .addComponent(jLabel7)
+                                                            .addComponent(jLabel8))
+                                                        .addGap(31, 31, 31)
+                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(cboproductType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addComponent(radFragile)
+                                                                .addGap(26, 26, 26)
+                                                                .addComponent(radNonFragile))))
+                                                    .addComponent(searchProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(0, 0, Short.MAX_VALUE))))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(349, 349, 349)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(283, 283, 283)
@@ -304,23 +322,27 @@ public class AdminManageProduct extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(deleteProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(editProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(viewProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(searchProductTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchProductBtn))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -346,69 +368,67 @@ public class AdminManageProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_cboproductTypeActionPerformed
 
     private void viewProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProductBtnActionPerformed
-         
+
         String productId = txtproductID.getText();
         if (productId != null && productId.length() > 0) {
-           
-          Product product = productController.findProduct(productId);
-          
-          
-          if(product  != null){
-              
-              txtproductName.setText(product.getProductName());
-              cboproductType.setSelectedItem(product.getProductType());
-              txtquantity.setText(Integer.toString(product.getquantity()));
-              txtprice.setText(Double.toString(product.getProductPrice()));
-              if (product.isFragile()){
-                radFragile.setSelected(true);
-              }else if(!product.isFragile()){
-                 radNonFragile.setSelected(true);
-              }
-              
-              
-              
-          }else{
-               ShowMessage.showWarnMessage(this, "Invalid Product ID");
-               
-               txtproductID.setText("");
-               txtproductName.setText("");
-               txtquantity.setText("");
-               txtprice.setText("");
-               cboproductType.setSelectedItem(0);
-               radFragile.setSelected(false);
-               radNonFragile.setSelected(false);
-               
-               
-            txtproductID.requestFocus();
-          }
-            
-        }
-        else {
+
+            Product product = productController.findProduct(productId);
+
+            if (product != null) {
+
+                txtproductName.setText(product.getProductName());
+                cboproductType.setSelectedItem(product.getProductType());
+                txtquantity.setText(Integer.toString(product.getquantity()));
+                txtprice.setText(Double.toString(product.getProductPrice()));
+                if (product.isFragile()) {
+                    radFragile.setSelected(true);
+                } else if (!product.isFragile()) {
+                    radNonFragile.setSelected(true);
+                }
+
+            } else {
+                ShowMessage.showWarnMessage(this, "Invalid Product ID");
+
+                txtproductID.setText("");
+                txtproductName.setText("");
+                txtquantity.setText("");
+                txtprice.setText("");
+                cboproductType.setSelectedItem(0);
+                radFragile.setSelected(false);
+                radNonFragile.setSelected(false);
+
+                txtproductID.requestFocus();
+            }
+
+        } else {
             ShowMessage.showWarnMessage(this, "Please Enter Product ID");
             txtproductID.requestFocus();
         }
-        
-        
+
+
     }//GEN-LAST:event_viewProductBtnActionPerformed
 
     private void searchProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchProductBtnActionPerformed
-        // TODO add your handling code here:
+      
+        
+        String productName = searchProductTF.getText();
+        
+        loadProductInfoToTable(productName);
+        
     }//GEN-LAST:event_searchProductBtnActionPerformed
 
     private void deleteProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteProductBtnActionPerformed
-        
-         System.out.println("Button Clicked");
-         
-         String productId = txtproductID.getText();
-         String productName = txtproductName.getText();
-         String quantity = txtquantity.getText();
-         if (productId != null && productId.length() > 0) {  
+
+        System.out.println("Button Clicked");
+
+        String productId = txtproductID.getText();
+        String productName = txtproductName.getText();
+        String quantity = txtquantity.getText();
+        if (productId != null && productId.length() > 0) {
             String productID = productController.deleteProduct(productId);
-         }
-         
-         
-         
-         
+        }
+
+
     }//GEN-LAST:event_deleteProductBtnActionPerformed
 
     private void addProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductBtnActionPerformed
@@ -456,7 +476,6 @@ public class AdminManageProduct extends javax.swing.JFrame {
 
                                 ProductController controller = new ProductController();
                                 String status = controller.addProduct(p);
-                              
 
                                 if (status.equals("SUCCESS")) {
                                     ShowMessage.showInfoMessage(this, productId + " Added succesfully");
@@ -507,20 +526,48 @@ public class AdminManageProduct extends javax.swing.JFrame {
 
     private void editProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProductBtnActionPerformed
         System.out.println("Button Clicked");
-        
+
         String productId = txtproductID.getText();
         String productName = txtproductName.getText();
         String quantity = txtquantity.getText();
         String price = txtprice.getText();
-        
-        if (productId != null && productId.length() > 0){
-            
-            
-            
-            
-            
+        String productType = (String) cboproductType.getSelectedItem();
+        Boolean fragile = radFragile.isSelected();
+        Boolean notfragile = radNonFragile.isSelected();
+
+        if (productId != null && productId.length() > 0) {
+
+            Product product = new Product();
+            product.setProductID(productId);
+            product.setProductName(productName);
+            product.setProductPrice(Double.parseDouble(price));
+            product.setquantity(Integer.parseInt(quantity));
+            product.setProductType((String) cboproductType.getSelectedItem());
+            product.setFragile(radFragile.isSelected());
+            product.setFragile(radNonFragile.isSelected());
+
+            if (fragile) {
+                product.setFragile(true);
+            } else {
+                product.setFragile(false);
+            }
+
+            String status = productController.updateProduct(product);
+
+            if (status.equals("SUCCESS")) {
+                ShowMessage.showInfoMessage(this, productId + " Product updated successfully !!");
+            } else if (status.equals("PRODUCT_NOT_EXIST")) {
+                ShowMessage.showWarnMessage(this, productId + " Product Not Exist");
+            } else {
+                ShowMessage.showErrorMessage(this, productId + " Product ID Update Error !!. ");
+            }
+
+        } else {
+            ShowMessage.showWarnMessage(this, "Please Enter Product ID");
+            txtproductID.requestFocus();
         }
-        
+
+
     }//GEN-LAST:event_editProductBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -586,14 +633,44 @@ public class AdminManageProduct extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable productTable;
     private javax.swing.JRadioButton radFragile;
     private javax.swing.JRadioButton radNonFragile;
     private javax.swing.JButton searchProductBtn;
+    private javax.swing.JTextField searchProductTF;
     private javax.swing.JTextField txtprice;
     private javax.swing.JTextField txtproductID;
     private javax.swing.JTextField txtproductName;
     private javax.swing.JTextField txtquantity;
     private javax.swing.JButton viewProductBtn;
     // End of variables declaration//GEN-END:variables
+
+    private void loadProductInfoToTable(String productName) {
+
+        List<Product> productList = productController.findProductsByName(productName);
+
+        Vector productRows = new Vector();
+
+        for (Product p : productList) {
+            System.out.println(">>>> " + p.getProductName());
+            Vector row = new Vector();
+
+            row.add(p.getProductID());
+            row.add(p.getProductName());
+            row.add(p.getProductType());
+            row.add(p.getProductPrice());
+            row.add(p.getquantity());
+            row.add(p.isFragile());
+
+            productRows.add(row);
+
+            productTable.setModel(new DefaultTableModel(productRows, productColumn) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            });
+
+        }
+    }
 }

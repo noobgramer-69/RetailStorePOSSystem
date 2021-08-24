@@ -1,4 +1,4 @@
-package com.retailstore.model;
+package retailstore.model;
 
 public class Product {
 	 
