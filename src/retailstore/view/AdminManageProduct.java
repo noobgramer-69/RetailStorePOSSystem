@@ -361,7 +361,7 @@ public class AdminManageProduct extends javax.swing.JFrame {
         String productName = txtproductName.getText();
         String quantity = txtquantity.getText();
         if (productId != null && productId.length() > 0) {
-            String productID = productController.deleteProduct(productId);
+            String status = productController.deleteProduct(productId);
         }
 
 

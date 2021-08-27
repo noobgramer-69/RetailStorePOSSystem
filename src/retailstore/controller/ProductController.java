@@ -38,7 +38,7 @@ public class ProductController {
 
         String productId = product.getProductID();
 
-        if (!isProductExits(productId)) {
+        if (!isProductExists(productId)) {
             String line = null;
             if(isFirstLine()){
              line = productId + "," + product.getProductName() + "," + product.getProductType()
@@ -80,7 +80,7 @@ public class ProductController {
 
         String productId = product.getProductID();
 
-        if (isProductExits(productId)) {
+        if (isProductExists(productId)) {
             
             
              String updatedLine = productId + "," + product.getProductName() + "," + product.getProductType()
@@ -144,7 +144,7 @@ public class ProductController {
 
     public String deleteProduct(String productId) {
 
-        if (isProductExits(productId)) {
+        if (isProductExists(productId)) {
 
             File file = new File(FILE_PATH);
 
@@ -227,7 +227,7 @@ public class ProductController {
         return false;
     }
      
-    public boolean isProductExits(String productId) {
+    public boolean isProductExists(String productId) {
 
         // Read Texxt File
         File file = new File(FILE_PATH);

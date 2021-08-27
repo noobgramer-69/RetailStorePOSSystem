@@ -50,10 +50,10 @@ public class ProductControllerTestCase {
         
           
       ProductController obj =new ProductController();
-      boolean exist =   obj.isProductExits("P101");
+      boolean exist =   obj.isProductExists("P101");
         
 //        assertTrue(obj.isProductExits("P101"));
-         assertFalse(obj.isProductExits("P101"));
+         assertFalse(obj.isProductExists("P101"));
     }
     
     

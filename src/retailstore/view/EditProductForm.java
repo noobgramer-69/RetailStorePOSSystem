@@ -15,6 +15,7 @@ import retailstore.model.Product;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+
 /**
  *
  * @author tsj09
@@ -125,9 +126,17 @@ public class EditProductForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addContainerGap()
+                        .addComponent(jButton_CANCEL, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addComponent(editProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -146,21 +155,16 @@ public class EditProductForm extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(radFragile)
                                         .addGap(18, 18, 18)
-                                        .addComponent(radNonFragile))))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton_CANCEL, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)
-                        .addComponent(editProductBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(21, 21, 21))
+                                        .addComponent(radNonFragile)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtproductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,7 +186,7 @@ public class EditProductForm extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(radFragile, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(radNonFragile, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(39, 39, 39)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_CANCEL, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,18 +196,6 @@ public class EditProductForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cboproductTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboproductTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboproductTypeActionPerformed
-
-    private void radNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radNonFragileActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radNonFragileActionPerformed
-
-    private void txtpriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpriceActionPerformed
-
     private void jButton_CANCELActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CANCELActionPerformed
 
         System.exit(0);
@@ -211,8 +203,7 @@ public class EditProductForm extends javax.swing.JFrame {
 
     private void editProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProductBtnActionPerformed
         System.out.println("Button Clicked");
-
-
+        
         String productName = txtproductName.getText();
         String quantity = txtquantity.getText();
         String price = txtprice.getText();
@@ -223,7 +214,6 @@ public class EditProductForm extends javax.swing.JFrame {
         if (productId != null && productId.length() > 0) {
 
             Product product = new Product();
-            product.setProductID(productId);
             product.setProductName(productName);
             product.setProductPrice(Double.parseDouble(price));
             product.setquantity(Integer.parseInt(quantity));
@@ -233,10 +223,13 @@ public class EditProductForm extends javax.swing.JFrame {
 
             if (fragile) {
                 product.setFragile(true);
-            } else {
+                product.setFragile(radFragile.isSelected());
+            } else if (notfragile) {
                 product.setFragile(false);
+                product.setFragile(radNonFragile.isSelected());
             }
-
+            
+            ProductController controller = new ProductController();
             String status = productController.updateProduct(product);
 
             if (status.equals("SUCCESS")) {
@@ -254,9 +247,21 @@ public class EditProductForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_editProductBtnActionPerformed
 
+    private void radNonFragileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radNonFragileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radNonFragileActionPerformed
+
     private void txtproductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtproductNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtproductNameActionPerformed
+
+    private void txtpriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpriceActionPerformed
+
+    private void cboproductTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboproductTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboproductTypeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,9 +297,29 @@ public class EditProductForm extends javax.swing.JFrame {
             }
         });
     }
+    
+     public boolean verifFields()
+    {
+     
+        if(txtquantity.getText().equals("") || txtprice.getText().equals("") || txtproductName.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "One Or More Fields Are Empty", "Empty Fields", 0);
+            return false;
+        }
+        else{
+            try{
+                Integer.valueOf(txtquantity.getText());
+                Double.valueOf(txtprice.getText());
+                return true;
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Invalid Values", 0);
+                return false;
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cboproductType;
+    public javax.swing.JComboBox<String> cboproductType;
     private javax.swing.JButton editProductBtn;
     private javax.swing.JButton jButton_CANCEL;
     private javax.swing.JLabel jLabel2;
@@ -303,10 +328,10 @@ public class EditProductForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JRadioButton radFragile;
-    private javax.swing.JRadioButton radNonFragile;
-    private javax.swing.JTextField txtprice;
-    private javax.swing.JTextField txtproductName;
-    private javax.swing.JTextField txtquantity;
+    public javax.swing.JRadioButton radFragile;
+    public javax.swing.JRadioButton radNonFragile;
+    public javax.swing.JTextField txtprice;
+    public javax.swing.JTextField txtproductName;
+    public javax.swing.JTextField txtquantity;
     // End of variables declaration//GEN-END:variables
 }

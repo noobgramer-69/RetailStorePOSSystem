@@ -1,0 +1,2 @@
+P001,Mac,Laptop,34043.0,4,true
+P002,Asus,Laptop,3500.0,1,true

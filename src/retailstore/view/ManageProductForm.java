@@ -7,20 +7,23 @@ package retailstore.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import retailstore.controller.ProductController;
 import static retailstore.controller.ProductController.FILE_PATH;
-
+import retailstore.controller.util.ShowMessage;
 /**
  *
  * @author tsj09
@@ -65,8 +68,8 @@ public class ManageProductForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
-        jButton_INSERT_PRODUCT_ = new javax.swing.JButton();
-        jButton_UPDATE_PRODUCT_ = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        jButton_EDIT_PRODUCT_ = new javax.swing.JButton();
         jButton_DELETE_PRODUCT_ = new javax.swing.JButton();
         jButton_REFRESH_ = new javax.swing.JButton();
         jButton_SEARCH_ = new javax.swing.JButton();
@@ -90,23 +93,23 @@ public class ManageProductForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(productTable);
 
-        jButton_INSERT_PRODUCT_.setBackground(new java.awt.Color(30, 130, 76));
-        jButton_INSERT_PRODUCT_.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton_INSERT_PRODUCT_.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_INSERT_PRODUCT_.setText("Add New Product");
-        jButton_INSERT_PRODUCT_.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setBackground(new java.awt.Color(30, 130, 76));
+        btnAdd.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdd.setText("Add New Product");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_INSERT_PRODUCT_ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        jButton_UPDATE_PRODUCT_.setBackground(new java.awt.Color(65, 131, 215));
-        jButton_UPDATE_PRODUCT_.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton_UPDATE_PRODUCT_.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_UPDATE_PRODUCT_.setText("Edit Product");
-        jButton_UPDATE_PRODUCT_.addActionListener(new java.awt.event.ActionListener() {
+        jButton_EDIT_PRODUCT_.setBackground(new java.awt.Color(65, 131, 215));
+        jButton_EDIT_PRODUCT_.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jButton_EDIT_PRODUCT_.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_EDIT_PRODUCT_.setText("Edit Product");
+        jButton_EDIT_PRODUCT_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_UPDATE_PRODUCT_ActionPerformed(evt);
+                jButton_EDIT_PRODUCT_ActionPerformed(evt);
             }
         });
 
@@ -150,8 +153,8 @@ public class ManageProductForm extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton_UPDATE_PRODUCT_, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_INSERT_PRODUCT_, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_EDIT_PRODUCT_, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_DELETE_PRODUCT_, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -182,9 +185,9 @@ public class ManageProductForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton_INSERT_PRODUCT_, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90)
-                        .addComponent(jButton_UPDATE_PRODUCT_, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_EDIT_PRODUCT_, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(94, 94, 94)
                         .addComponent(jButton_DELETE_PRODUCT_, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,7 +208,7 @@ public class ManageProductForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_INSERT_PRODUCT_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_INSERT_PRODUCT_ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
         AddProductForm addProductForm = new AddProductForm();
         addProductForm.pack();
@@ -213,44 +216,108 @@ public class ManageProductForm extends javax.swing.JFrame {
         addProductForm.setLocationRelativeTo(null);
         addProductForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-    }//GEN-LAST:event_jButton_INSERT_PRODUCT_ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void jButton_UPDATE_PRODUCT_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_UPDATE_PRODUCT_ActionPerformed
+    private void jButton_EDIT_PRODUCT_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EDIT_PRODUCT_ActionPerformed
 
-//        try{
-//
-//            // open the edit product form and display data into the fields
-//            EditProductForm editProductForm = new EditProductForm();
-//
-//            Integer rowIndex = productTable.getSelectedRow();
-//
-//            editProductForm.txtproductID = Integer.valueOf(productTable.getValueAt(rowIndex, 0).toString());
-//            editProductForm.txtproductName.setText(productTable.getValueAt(rowIndex, 1).toString());
-//            editProductForm.txtproductPrice.setText(productTable.getValueAt(rowIndex, 2).toString());
-//            editProductForm.txtQuantity.setText(productTable.getValueAt(rowIndex, 3).toString());
-//
-//            editProductForm.jComboBox1.setSelectedItem(jTable_Products.getValueAt(rowIndex, 6));
-//
-//            editProductForm.setVisible(true);
-//            editProductForm.pack();
-//            editProductForm.setLocationRelativeTo(null);
-//            editProductForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        }catch(Exception Ex){
-//            JOptionPane.showMessageDialog(null, "You Must Select A Product From The Table", "No Product Selected", 2);
-//        }
-    }//GEN-LAST:event_jButton_UPDATE_PRODUCT_ActionPerformed
+        
+        try{
+            EditProductForm editProductForm = new EditProductForm();
+            
+            int rowIndex = productTable.getSelectedRow();
+
+                
+            editProductForm.productId = String.valueOf(productTable.getValueAt(rowIndex, 0).toString());
+            if (editProductForm.productId!= null && editProductForm.productId.length() > 0) {
+                editProductForm.txtproductName.setText(productTable.getValueAt(rowIndex, 1).toString());
+                editProductForm.cboproductType.setSelectedItem(productTable.getValueAt(rowIndex, 2));
+                editProductForm.txtprice.setText(productTable.getValueAt(rowIndex, 3).toString());
+                editProductForm.txtquantity.setText(productTable.getValueAt(rowIndex, 4).toString());
+                if (editProductForm.radFragile.isSelected()){
+                    editProductForm.radFragile.setText(productTable.getValueAt(rowIndex, 5).toString());
+                }else if (editProductForm.radNonFragile.isSelected()){
+                    editProductForm.radFragile.setText(productTable.getValueAt(rowIndex, 5).toString());
+                }
+            }
+                
+
+            editProductForm.setVisible(true);
+                    editProductForm.pack();
+                    editProductForm.setLocationRelativeTo(null);
+                    editProductForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        }catch(Exception Ex){
+            JOptionPane.showMessageDialog(null, "You Must Select A Product From The Table", "No Product Selected", 2);
+        }
+    }//GEN-LAST:event_jButton_EDIT_PRODUCT_ActionPerformed
 
     private void jButton_DELETE_PRODUCT_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DELETE_PRODUCT_ActionPerformed
         System.out.println("Button Clicked");
         
-        try{
-            Integer rowIndex = productTable.getSelectedRow();
+        int rowIndex = productTable.getSelectedRow();
+            if (rowIndex >=0){
+                DefaultTableModel model = (DefaultTableModel) productTable.getModel(); 
+                String productId = String.valueOf(productTable.getValueAt(rowIndex, 0).toString());
+                model.removeRow(rowIndex);
+                if (productId != null && productId.length() > 0) {
+                     ProductController controller = new ProductController();
+                     String status = controller.deleteProduct(productId);
+                     if (status.equals("SUCCESS")) {
+                        ShowMessage.showInfoMessage(this, productId + "Deleted succesfully");
+                     }
+                     
+                }
+            }
+                
+                /*File file = new File(FILE_PATH);
+                
+                if (file.exists()) {
+
+                try {
+
+                    FileReader fileReader = new FileReader(file);
+                    BufferedReader bufferedReader = new BufferedReader(fileReader);
+                    
+                    Object[] tableLines = bufferedReader.lines().toArray();
+                    
+                    
+                    String[] dataRows = new String [tableLines.length]; 
+                    
+                    for(int i = 0; i < tableLines.length; i++)
+                    {
+                        String line = tableLines[i].toString().trim();
+                        String[] dataRow = line.split(",");
+                        dataRows [i] = dataRow[0];
+                    }
+                    
+                    if (dataRows[0].equals(productId)){
+                           System.out.println(dataRows[0]);
+                    }
+                   
+                    
+                    
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+                
+                
+                
+               
+            }else{
+                JOptionPane.showMessageDialog(null, "You Must Select A Product From The Table", "No Product Selected", 2);
+            }
+            
+        /**try{
+            
+            int rowIndex = productTable.getSelectedRow();
             String productId = String.valueOf(productTable.getValueAt(rowIndex, 0).toString());
             productController.deleteProduct(productId);
 
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "You Must Select A Product From The Table", "No Product Selected", 2);
-        }
+        }*/
 
     }//GEN-LAST:event_jButton_DELETE_PRODUCT_ActionPerformed
 
@@ -317,11 +384,11 @@ public class ManageProductForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton jButton_DELETE_PRODUCT_;
-    private javax.swing.JButton jButton_INSERT_PRODUCT_;
+    private javax.swing.JButton jButton_EDIT_PRODUCT_;
     private javax.swing.JButton jButton_REFRESH_;
     private javax.swing.JButton jButton_SEARCH_;
-    private javax.swing.JButton jButton_UPDATE_PRODUCT_;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
